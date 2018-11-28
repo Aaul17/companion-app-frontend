@@ -5,7 +5,7 @@ import NavBar from './NavBar'
 const Login = (props) => {
   return (
     <>
-    <NavBar currentUser={props.currentUser}/>
+    <NavBar currentUser={props.currentUser} logoutCurrentUser={props.logoutCurrentUser}/>
     <center id="form-container" className="form-div">
       <div id="login-div">
         <h1>Login</h1>

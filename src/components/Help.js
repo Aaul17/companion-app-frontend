@@ -5,7 +5,7 @@ class Help extends Component {
   render() {
     return (
       <>
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logoutCurrentUser={this.props.logoutCurrentUser}/>
         <div className="App">
           <h1>Help Page</h1>
         </div>

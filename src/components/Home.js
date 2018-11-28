@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logoutCurrentUser={this.props.logoutCurrentUser}/>
         <div className="App" style={{backgroundImage: `url(${Landing})`}}>
           <br />
           <h1 className="tagline-firstline">Keep track of your chronic illness</h1>

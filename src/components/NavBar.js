@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment, Label, Header } from 'semantic-ui-react'
+import { Menu, Segment, Label, Header, Button } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
 
 const Logo = require('../assets/temp_logo.png')
@@ -64,23 +64,27 @@ class NavBar extends Component {
           </NavLink>
           {
             this.props.currentUser ?
-            null
+            <Menu.Menu position='right'>
+              <Button basic onClick={event => this.props.logoutCurrentUser(event)}>
+                Logout
+              </Button>
+            </Menu.Menu>
             :
             <Menu.Menu position='right'>
-            <NavLink exact to="/login">
-              <Menu.Item
-              name='log in'
-              active={activeItem === 'log in'}
-              onClick={this.handleItemClick}
-              />
-            </NavLink>
-            <NavLink exact to="/signup">
-              <Menu.Item
-              name='sign up'
-              active={activeItem === 'sign up'}
-              onClick={this.handleItemClick}
-              />
-            </NavLink>
+              <NavLink exact to="/login">
+                <Menu.Item
+                name='log in'
+                active={activeItem === 'log in'}
+                onClick={this.handleItemClick}
+                />
+              </NavLink>
+              <NavLink exact to="/signup">
+                <Menu.Item
+                name='sign up'
+                active={activeItem === 'sign up'}
+                onClick={this.handleItemClick}
+                />
+              </NavLink>
             </Menu.Menu>
           }
         </Menu>

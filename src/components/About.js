@@ -11,7 +11,7 @@ class About extends Component {
   render() {
     return (
       <>
-        <NavBar currentUser={this.props.currentUser}/>
+        <NavBar currentUser={this.props.currentUser} logoutCurrentUser={this.props.logoutCurrentUser}/>
         <Grid columns={2} padded relaxed>
           <Grid.Column width={11}>
             <h1>About Us</h1>

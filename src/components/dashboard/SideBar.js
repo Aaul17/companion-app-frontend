@@ -9,7 +9,7 @@ const HeaderLogo = () => (
 )
 
 class SideBar extends Component {
-  state = { activeItem: 'dashboard'}
+  state = {activeItem: 'dashboard'}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -33,21 +33,27 @@ class SideBar extends Component {
          onClick={this.handleItemClick}
        />
        </NavLink>
+       <NavLink exact to='/dashboard/doctors'>
        <Menu.Item
          name='doctors'
          active={activeItem === 'doctors'}
          onClick={this.handleItemClick}
        />
+       </NavLink>
+       <NavLink exact to='/dashboard/calendar'>
        <Menu.Item
          name='appointments'
          active={activeItem === 'appointments'}
          onClick={this.handleItemClick}
        />
+       </NavLink>
+       <NavLink exact to='/dashboard/notes'>
        <Menu.Item
          name='notes'
          active={activeItem === 'notes'}
          onClick={this.handleItemClick}
        />
+       </NavLink>
      </Menu>
      </Segment>
     )
