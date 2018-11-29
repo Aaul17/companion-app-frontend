@@ -1,10 +1,11 @@
 import React from 'react'
 import Appointment from './Appointment'
+import { Card } from 'semantic-ui-react'
 
-const Appointments = ({currentUser, handleChange, appointments}) => {
+const Appointments = ({currentUser, handleChange, appointments, fillInAptModal, editApt, aptName, aptDetails, aptScheduled}) => {
   const myAppointments = appointments.filter(aptObj => aptObj.user_id === currentUser.id)
   return (
-    <div>
+    <Card.Group className="appointments-div">
       {myAppointments.map(aptObj =>
         <Appointment
         key={aptObj.id}
@@ -12,9 +13,14 @@ const Appointments = ({currentUser, handleChange, appointments}) => {
         appointment={aptObj}
         appointments={appointments}
         handleChange={handleChange}
+        fillInAptModal={fillInAptModal}
+        editApt={editApt}
+        aptName={aptName}
+        aptDetails={aptDetails}
+        aptScheduled={aptScheduled}
         />
       )}
-    </div>
+    </Card.Group>
   )
 }
 

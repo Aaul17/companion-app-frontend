@@ -42,7 +42,13 @@ class App extends Component {
     newDocAddress: "",
     newDocLastSeen: "",
     newNoteTitle: "",
-    newNoteBody: ""
+    newNoteBody: "",
+    aptName: "",
+    aptDetails: "",
+    aptScheduled: "",
+    newAptName: "",
+    newAptDetails: "",
+    newAptScheduled: ""
   }
 
   componentDidMount() {
@@ -272,19 +278,112 @@ class App extends Component {
     })
   }
 
-  // newNote = (event) => {
-  //   event.preventDefault()
-  //   fetch('http://localhost:3000/api/v1/notes', {
-  //     'method': 'POST',
-  //     'headers': {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     'body': JSON.stringify({
-  //       'title':
-  //     })
-  //   })
-  // }
+  newNote = (event) => {
+    event.preventDefault()
+    fetch('http://localhost:3000/api/v1/notes', {
+      'method': 'POST',
+      'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      'body': JSON.stringify({
+        'title': this.state.newNoteTitle,
+        'body': this.state.newNoteBody,
+        'user_id': this.state.currentUser.id
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        notes: [...this.state.notes, json],
+        newNoteTitle: "",
+        newNoteBody: ""
+      })
+    })
+  }
+
+  deleteNote = (noteObj) => {
+    fetch(`http://localhost:3000/api/v1/notes/${noteObj.id}`, {
+      'method': 'DELETE'
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        notes: this.state.notes.filter(nObj => nObj.id !== noteObj.id)
+      })
+    })
+  }
+
+  fillInAptModal = (aptObj) => {
+    this.setState({
+      aptName: aptObj.name,
+      aptDetails: aptObj.details,
+      aptScheduled: aptObj.scheduled
+    })
+  }
+
+  editApt = (event, aptObj) => {
+    event.preventDefault()
+    fetch(`http://localhost:3000/api/v1/appointments/${aptObj.id}`, {
+      'method': 'PATCH',
+      'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      'body': JSON.stringify({
+        'name': this.state.aptName,
+        'details': this.state.aptDetails,
+        'scheduled': this.state.aptScheduled,
+        'user_id': this.state.currentUser.id
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        appointments: this.state.appointments.map(appointmentObj => {
+          if (appointmentObj.id === json.id) {
+            appointmentObj.name = json.name
+            appointmentObj.details = json.details
+            appointmentObj.scheduled = json.scheduled
+          }
+          return appointmentObj
+        }),
+        aptName:"",
+        aptDetails:"",
+        aptScheduled:"",
+      })
+    })
+  }
+
+  newApt = (event) => {
+    event.preventDefault()
+    fetch('http://localhost:3000/api/v1/appointments', {
+      'method': 'POST',
+      'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      'body': JSON.stringify({
+        'name': this.state.newAptName,
+        'details': this.state.newAptDetails,
+        'scheduled': this.state.newAptScheduled,
+        'user_id': this.state.currentUser.id
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        appointments: [...this.state.appointments, json],
+        newAptName: "",
+        newAptDetails: "",
+        newAptScheduled: ""
+      })
+    })
+  }
 
   render() {
     return (
@@ -390,6 +489,10 @@ class App extends Component {
               logoutCurrentUser={this.logoutCurrentUser}
               notes={this.state.notes}
               handleChange={this.handleChange}
+              newNote={this.newNote}
+              newNoteTitle={this.state.newNoteTitle}
+              newNoteBody={this.state.newNoteBody}
+              deleteNote={this.deleteNote}
               />)
               :
               (<Redirect to="/"/>)
@@ -401,6 +504,15 @@ class App extends Component {
                 logoutCurrentUser={this.logoutCurrentUser}
                 appointments={this.state.appointments}
                 handleChange={this.handleChange}
+                fillInAptModal={this.fillInAptModal}
+                editApt={this.editApt}
+                aptName={this.state.aptName}
+                aptDetails={this.state.aptDetails}
+                aptScheduled={this.state.aptScheduled}
+                newApt={this.newApt}
+                newAptName={this.state.newAptName}
+                newAptDetails={this.state.newAptDetails}
+                newAptScheduled={this.state.newAptScheduled}
                 />)
               :
               (<Redirect to="/"/>)

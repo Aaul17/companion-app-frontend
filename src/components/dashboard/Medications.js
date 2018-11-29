@@ -1,10 +1,11 @@
 import React from 'react'
 import Medication from './Medication'
+import { Card } from 'semantic-ui-react'
 
 const Medications = ({medications, currentUser, medName, medDose, medFrequency, handleClick, handleChange, fillInMedModal, editMedication, deleteMedication}) => {
   const myMedications = medications.filter(medicationObj => medicationObj.user_id === currentUser.id)
   return (
-    <div>
+    <Card.Group className="medications-div">
       {myMedications.map(medicationObj =>
         <Medication
         key={medicationObj.id}
@@ -19,7 +20,7 @@ const Medications = ({medications, currentUser, medName, medDose, medFrequency, 
         deleteMedication={deleteMedication}
         />
       )}
-    </div>
+    </Card.Group>
   )
 }
 

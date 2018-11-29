@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
-import { Icon, Form } from 'semantic-ui-react'
+import { Icon, Form, Button } from 'semantic-ui-react'
 
 class Profile extends Component {
   state = {
@@ -31,6 +31,7 @@ class Profile extends Component {
         <p>Email: {this.props.currentUser.email}</p>
         <p>Location: {this.props.currentUser.location}</p>
       </div>
+      <Button>Edit Profile</Button>
       </>
     )
   }

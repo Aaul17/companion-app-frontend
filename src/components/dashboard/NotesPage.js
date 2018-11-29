@@ -3,6 +3,7 @@ import SideBar from './SideBar'
 import { Grid, Menu, Segment, Button} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import Notes from './Notes'
+import NewNoteModal from './NewNoteModal'
 
 class NotesPage extends Component {
   render() {
@@ -33,10 +34,21 @@ class NotesPage extends Component {
           </Menu>
           </Segment>
           <h1>My Notes</h1>
+          <NewNoteModal
+          currentUser={this.props.currentUser}
+          notes={this.props.notes}
+          handleChange={this.props.handleChange}
+          newNote={this.props.newNote}
+          newNoteTitle={this.props.newNoteTitle}
+          newNoteBody={this.props.newNoteBody}
+          />
+          <br />
+          <br />
           <Notes
           currentUser={this.props.currentUser}
           notes={this.props.notes}
           handleChange={this.props.handleChange}
+          deleteNote={this.props.deleteNote}
           />
         </Grid.Column>
       </Grid>

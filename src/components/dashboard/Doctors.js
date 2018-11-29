@@ -1,10 +1,11 @@
 import React from 'react'
 import Doctor from './Doctor'
+import { Card } from 'semantic-ui-react'
 
 const Doctors = ({currentUser, handleChange, doctors}) => {
   const myDoctors = doctors.filter(doctorObj => doctorObj.user_id === currentUser.id)
   return (
-    <div>
+    <Card.Group className="doctors-div">
       {myDoctors.map(doctorObj =>
         <Doctor
         key={doctorObj.id}
@@ -14,7 +15,7 @@ const Doctors = ({currentUser, handleChange, doctors}) => {
         handleChange={handleChange}
         />
       )}
-    </div>
+    </Card.Group>
   )
 }
 

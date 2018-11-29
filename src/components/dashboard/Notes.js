@@ -1,10 +1,11 @@
 import React from 'react'
 import Note from './Note'
+import { Card } from 'semantic-ui-react'
 
-const Notes = ({currentUser, handleChange, notes}) => {
+const Notes = ({currentUser, handleChange, notes, deleteNote}) => {
   const myNotes = notes.filter(noteObj => noteObj.user_id === currentUser.id)
   return (
-    <div>
+    <Card.Group className="notes-div">
       {myNotes.map(noteObj =>
         <Note
         key={noteObj.id}
@@ -12,9 +13,10 @@ const Notes = ({currentUser, handleChange, notes}) => {
         note={noteObj}
         notes={notes}
         handleChange={handleChange}
+        deleteNote={deleteNote}
         />
       )}
-    </div>
+    </Card.Group>
   )
 }
 

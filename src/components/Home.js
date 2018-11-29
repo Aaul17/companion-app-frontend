@@ -10,11 +10,11 @@ class Home extends Component {
         <NavBar currentUser={this.props.currentUser} logoutCurrentUser={this.props.logoutCurrentUser}/>
         <div className="App" style={{backgroundImage: `url(${Landing})`}}>
           <br />
-          <h1 className="tagline-firstline">Keep track of your chronic illness</h1>
-          <h1 className="tagline-secondline">in one app</h1>
+          <h1 className="animated infinite fadeInLeft delay-2s tagline-firstline">Keep track of your chronic illness</h1>
+          <h1 className="animated infinite fadeInRight delay-2s tagline-secondline">in one app</h1>
         </div>
         <div className="footer">
-        Copyright 2018
+        Copyright © 2018 Alexandra Aulum-Pedersen. All rights reserved.
         </div>
       </>
     )

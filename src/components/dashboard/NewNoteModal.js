@@ -32,7 +32,7 @@ class NewNoteModal extends Component {
         closeOnEscape={false}
         size='small'
       >
-        <Header icon='pills' content='New Note' />
+        <Header icon='list' content='New Note' />
         <Modal.Content>
           <Form>
             <Form.Input name="newNoteTitle" onChange={event => this.props.handleChange(event)} label="Title" placeholder="Title" value={this.props.newNoteTitle}/>

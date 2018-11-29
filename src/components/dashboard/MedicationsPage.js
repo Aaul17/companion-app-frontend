@@ -42,6 +42,7 @@ class MedicationsPage extends Component {
           newMedFrequency={this.props.newMedFrequency}
           />
           <br />
+          <br />
           <Medications
           currentUser={this.props.currentUser}
           medications={this.props.medications}

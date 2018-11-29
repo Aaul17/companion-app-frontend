@@ -44,6 +44,11 @@ class CalendarPage extends Component {
           logoutCurrentUser={this.props.logoutCurrentUser}
           appointments={this.props.appointments}
           handleChange={this.props.handleChange}
+          fillInAptModal={this.props.fillInAptModal}
+          editApt={this.props.editApt}
+          aptName={this.props.aptName}
+          aptDetails={this.props.aptDetails}
+          aptScheduled={this.props.aptScheduled}
           />
         </Grid.Column>
       </Grid>

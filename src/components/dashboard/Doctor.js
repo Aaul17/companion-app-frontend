@@ -5,7 +5,7 @@ const Doctor = ({currentUser, handleChange, doctors, doctor}) => {
   return (
     <>
     <br/>
-    <Card>
+    <Card className="doctor-div">
       <Card.Content header={doctor.name} />
       <Card.Content>
         <p>Specialty: {doctor.specialty}</p>

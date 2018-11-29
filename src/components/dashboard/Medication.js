@@ -7,7 +7,7 @@ const Medication = ({medication, medName, medDose, medFrequency, handleClick, ha
   return (
     <>
     <br/>
-    <Card>
+    <Card className="medication-div">
       <Card.Content header={medication.name} />
       <Card.Content description={`${medication.dose} - ${medication.frequency}`} />
       <Card.Content extra>
