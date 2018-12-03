@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
-import { Grid, Image } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 const AboutImg = require('../assets/about.jpg')
 const TeamOneImg = require('../assets/team_1.jpg')
@@ -20,7 +20,7 @@ class About extends Component {
             <p>Mauris euismod orci quis semper elementum. Sed eu condimentum diam. Morbi bibendum mattis erat, in interdum ex fringilla quis. Nam et arcu sapien. Morbi convallis consectetur lacus, sit amet commodo erat dignissim ut. Nunc tristique ante ut risus lobortis consectetur. Nullam at dolor mollis, molestie ante non, bibendum lectus. Mauris feugiat interdum neque feugiat viverra.</p>
           </Grid.Column>
           <Grid.Column width={3} >
-            <img className="about-img" src={AboutImg}/>
+            <img className="about-img" src={AboutImg} alt=""/>
           </Grid.Column>
         </Grid>
         <br />
@@ -33,15 +33,15 @@ class About extends Component {
           <center>
             <Grid centered padded relaxed columns={3}>
               <Grid.Column textAlign='center'>
-                <img className="team-img" src={TeamOneImg} />
+                <img className="team-img" src={TeamOneImg} alt="" />
                 <h3>Caroline</h3>
               </Grid.Column>
               <Grid.Column textAlign='center'>
-                <img className="team-img" src={TeamTwoImg} />
+                <img className="team-img" src={TeamTwoImg} alt="" />
                 <h3>Alexandra</h3>
               </Grid.Column>
               <Grid.Column textAlign='center'>
-                <img className="team-img" src={TeamThreeImg} />
+                <img className="team-img" src={TeamThreeImg} alt="" />
                 <h3>Natasha</h3>
               </Grid.Column>
             </Grid>

@@ -48,6 +48,10 @@ class NotesPage extends Component {
           currentUser={this.props.currentUser}
           notes={this.props.notes}
           handleChange={this.props.handleChange}
+          fillInNoteModal={this.props.fillInNoteModal}
+          editNote={this.props.editNote}
+          noteTitle={this.props.noteTitle}
+          noteBody={this.props.noteBody}
           deleteNote={this.props.deleteNote}
           />
         </Grid.Column>

@@ -51,6 +51,14 @@ class DoctorsPage extends Component {
           currentUser={this.props.currentUser}
           doctors={this.props.doctors}
           handleChange={this.props.handleChange}
+          docName={this.props.docName}
+          docSpecialty={this.props.docSpecialty}
+          docPhone={this.props.docPhone}
+          docAddress={this.props.docAddress}
+          docLastSeen={this.props.docLastSeen}
+          fillInDocModal={this.props.fillInDocModal}
+          editDoctor={this.props.editDoctor}
+          deleteDoctor={this.props.deleteDoctor}
           />
         </Grid.Column>
       </Grid>

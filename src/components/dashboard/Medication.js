@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import EditMedModal from './EditMedModal'
 import DeleteMedModal from './DeleteMedModal'
 

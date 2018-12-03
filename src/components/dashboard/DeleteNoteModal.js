@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Icon, Modal, Form } from 'semantic-ui-react'
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 class DeleteNoteModal extends Component {
   state = {
@@ -22,7 +22,6 @@ class DeleteNoteModal extends Component {
   }
 
   render() {
-    const { value } = this.state
     return (
       <Modal
         trigger={<Button negative onClick={event => this.handleOpen(event)}>Delete</Button>}

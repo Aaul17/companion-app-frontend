@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
-import { Icon, Form, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 class Profile extends Component {
   state = {

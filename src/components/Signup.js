@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Form } from 'semantic-ui-react'
 import NavBar from './NavBar'
 

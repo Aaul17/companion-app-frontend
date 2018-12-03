@@ -1,9 +1,9 @@
 import React from 'react'
-import { Card, Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import EditAptModal from './EditAptModal'
-import dateFns from "date-fns"
+import DeleteAptModal from './DeleteAptModal'
 
-const Appointment = ({currentUser, handleChange, appointments, appointment, editApt, fillInAptModal, aptName, aptDetails, aptScheduled}) => {
+const Appointment = ({currentUser, handleChange, appointments, appointment, editApt, fillInAptModal, aptName, aptDetails, aptScheduled, deleteApt}) => {
   return (
     <>
     <br/>
@@ -24,6 +24,10 @@ const Appointment = ({currentUser, handleChange, appointments, appointment, edit
         aptName={aptName}
         aptDetails={aptDetails}
         aptScheduled={aptScheduled}
+        />
+        <DeleteAptModal
+        appointment={appointment}
+        deleteApt={deleteApt}
         />
       </Card.Content>
     </Card>

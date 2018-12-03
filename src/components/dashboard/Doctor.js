@@ -1,7 +1,9 @@
 import React from 'react'
-import { Card, Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
+import EditDoctorModal from './EditDoctorModal'
+import DeleteDoctorModal from './DeleteDoctorModal'
 
-const Doctor = ({currentUser, handleChange, doctors, doctor}) => {
+const Doctor = ({currentUser, handleChange, doctors, doctor, docName, docSpecialty, docPhone, docAddress, docLastSeen, fillInDocModal, editDoctor, deleteDoctor}) => {
   return (
     <>
     <br/>
@@ -14,7 +16,21 @@ const Doctor = ({currentUser, handleChange, doctors, doctor}) => {
         <p>Last Seen: {doctor.last_seen}</p>
       </Card.Content>
       <Card.Content extra>
-        <p>Edit  -  Delete</p>
+        <EditDoctorModal
+        docName={docName}
+        docSpecialty={docSpecialty}
+        docPhone={docPhone}
+        docAddress={docAddress}
+        docLastSeen={docLastSeen}
+        fillInDocModal={fillInDocModal}
+        editDoctor={editDoctor}
+        handleChange={handleChange}
+        doctor={doctor}
+        />
+        <DeleteDoctorModal
+        doctor={doctor}
+        deleteDoctor={deleteDoctor}
+        />
       </Card.Content>
     </Card>
     </>

@@ -1,8 +1,9 @@
 import React from 'react'
-import { Card, Icon, Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import DeleteNoteModal from './DeleteNoteModal'
+import EditNoteModal from './EditNoteModal'
 
-const Note = ({currentUser, handleChange, notes, note, deleteNote}) => {
+const Note = ({currentUser, handleChange, notes, note, fillInNoteModal, editNote, noteTitle, noteBody, deleteNote}) => {
   return (
     <>
     <br/>
@@ -12,6 +13,14 @@ const Note = ({currentUser, handleChange, notes, note, deleteNote}) => {
         <p>{note.body}</p>
       </Card.Content>
       <Card.Content extra>
+        <EditNoteModal
+        fillInNoteModal={fillInNoteModal}
+        editNote={editNote}
+        noteTitle={noteTitle}
+        noteBody={noteBody}
+        note={note}
+        handleChange={handleChange}
+        />
         <DeleteNoteModal note={note} deleteNote={deleteNote}/>
       </Card.Content>
     </Card>

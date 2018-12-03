@@ -4,6 +4,7 @@ import { Grid, Menu, Segment, Button} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import Calendar from './Calendar'
 import Appointments from './Appointments'
+import NewAptModal from './NewAptModal'
 
 class CalendarPage extends Component {
   render(){
@@ -39,6 +40,15 @@ class CalendarPage extends Component {
             </main>
           </div>
           <br />
+          <NewAptModal
+          newApt={this.props.newApt}
+          newAptName={this.props.newAptName}
+          newAptDetails={this.props.newAptDetails}
+          newAptScheduled={this.props.newAptScheduled}
+          handleChange={this.props.handleChange}
+          />
+          <br />
+          <br />
           <Appointments
           currentUser={this.props.currentUser}
           logoutCurrentUser={this.props.logoutCurrentUser}
@@ -49,6 +59,7 @@ class CalendarPage extends Component {
           aptName={this.props.aptName}
           aptDetails={this.props.aptDetails}
           aptScheduled={this.props.aptScheduled}
+          deleteApt={this.props.deleteApt}
           />
         </Grid.Column>
       </Grid>

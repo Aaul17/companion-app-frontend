@@ -48,7 +48,7 @@ class EditAptModal extends Component {
         closeOnEscape={false}
         size='small'
       >
-        <Header icon='user md' content='Edit Appointment' />
+        <Header icon='calendar alternate outline' content='Edit Appointment' />
         <Modal.Content>
           <Form>
             <Form.Input name="aptName" onChange={event => this.props.handleChange(event)} label="Name" placeholder="Name" value={this.props.aptName}/>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment, Label, Header } from 'semantic-ui-react'
+import { Menu, Segment, Header } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
 
 const Logo = require('../../assets/temp_logo.png')

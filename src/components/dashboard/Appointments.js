@@ -2,7 +2,7 @@ import React from 'react'
 import Appointment from './Appointment'
 import { Card } from 'semantic-ui-react'
 
-const Appointments = ({currentUser, handleChange, appointments, fillInAptModal, editApt, aptName, aptDetails, aptScheduled}) => {
+const Appointments = ({currentUser, handleChange, appointments, fillInAptModal, editApt, aptName, aptDetails, aptScheduled, deleteApt}) => {
   const myAppointments = appointments.filter(aptObj => aptObj.user_id === currentUser.id)
   return (
     <Card.Group className="appointments-div">
@@ -18,6 +18,7 @@ const Appointments = ({currentUser, handleChange, appointments, fillInAptModal, 
         aptName={aptName}
         aptDetails={aptDetails}
         aptScheduled={aptScheduled}
+        deleteApt={deleteApt}
         />
       )}
     </Card.Group>
