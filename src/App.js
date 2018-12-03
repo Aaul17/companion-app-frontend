@@ -520,7 +520,7 @@ class App extends Component {
   setPainLevel = (event)  => {
     event.preventDefault()
     let today = new Date()
-    debugger
+    // debugger
     fetch('http://localhost:3000/api/v1/pains', {
       'method':'POST',
       'headers': {

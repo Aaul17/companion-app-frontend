@@ -11,57 +11,56 @@ const HeaderLogo = () => (
 class NavBar extends Component {
   state = { activeItem: "home"}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name }, () => console.log(this.state.activeItem))
 
   render(){
     const { activeItem } = this.state
     return (
-      <>
       <Segment className="navbar">
         <HeaderLogo />
         <Menu secondary borderless size='huge'>
-          <NavLink exact to="/">
             <Menu.Item
+            as={NavLink}
+            exact to="/"
             name="home"
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
             />
-          </NavLink>
-          <NavLink exact to="/about">
             <Menu.Item
+            as={NavLink}
+            exact to="/about"
             name="about"
             active={activeItem === 'about'}
             onClick={this.handleItemClick}
             />
-          </NavLink>
           {
             this.props.currentUser ?
             <>
-            <NavLink exact to="/dashboard">
             <Menu.Item
+            as={NavLink}
+            exact to="/dashboard"
             name="dashboard"
             active={activeItem === 'dashboard'}
             onClick={this.handleItemClick}
             />
-            </NavLink>
-            <NavLink exact to="/profile">
             <Menu.Item
+            as={NavLink}
+            exact to="/profile"
             name="profile"
             active={activeItem === 'profile'}
             onClick={this.handleItemClick}
             />
-            </NavLink>
             </>
             :
             null
           }
-          <NavLink exact to="/help">
             <Menu.Item
+            as={NavLink}
+            exact to="/help"
             name="help"
             active={activeItem === 'help'}
             onClick={this.handleItemClick}
             />
-          </NavLink>
           {
             this.props.currentUser ?
             <Menu.Menu position='right'>
@@ -71,25 +70,24 @@ class NavBar extends Component {
             </Menu.Menu>
             :
             <Menu.Menu position='right'>
-              <NavLink exact to="/login">
-                <Menu.Item
-                name='log in'
-                active={activeItem === 'log in'}
-                onClick={this.handleItemClick}
-                />
-              </NavLink>
-              <NavLink exact to="/signup">
-                <Menu.Item
-                name='sign up'
-                active={activeItem === 'sign up'}
-                onClick={this.handleItemClick}
-                />
-              </NavLink>
+              <Menu.Item
+              as={NavLink}
+              exact to="/login"
+              name='log in'
+              active={activeItem === 'log in'}
+              onClick={this.handleItemClick}
+              />
+              <Menu.Item
+              as={NavLink}
+              exact to="/signup"
+              name='sign up'
+              active={activeItem === 'sign up'}
+              onClick={this.handleItemClick}
+              />
             </Menu.Menu>
           }
         </Menu>
       </Segment>
-      </>
     )
   }
 }

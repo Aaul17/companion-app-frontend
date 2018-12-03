@@ -16,44 +16,44 @@ class SideBar extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <Segment fluid color={'violet'} inverted >
+      <Segment color={'violet'} inverted >
       <HeaderLogo />
       <Menu fluid color={'violet'} inverted secondary vertical borderless>
-      <NavLink exact to='/dashboard'>
        <Menu.Item
-       name='dashboard'
-       active={activeItem === 'dashboard'}
-       onClick={this.handleItemClick}
+        as={NavLink}
+        exact to="/dashboard"
+        name='dashboard'
+        active={activeItem === 'dashboard'}
+        onClick={this.handleItemClick}
        />
-       </NavLink>
-       <NavLink exact to='/dashboard/medications'>
        <Menu.Item
-         name='medications'
-         active={activeItem === 'medications'}
-         onClick={this.handleItemClick}
+        as={NavLink}
+        exact to="/dashboard/medications"
+        name='medications'
+        active={activeItem === 'medications'}
+        onClick={this.handleItemClick}
        />
-       </NavLink>
-       <NavLink exact to='/dashboard/doctors'>
        <Menu.Item
-         name='doctors'
-         active={activeItem === 'doctors'}
-         onClick={this.handleItemClick}
+        as={NavLink}
+        exact to="/dashboard/doctors"
+        name='doctors'
+        active={activeItem === 'doctors'}
+        onClick={this.handleItemClick}
        />
-       </NavLink>
-       <NavLink exact to='/dashboard/calendar'>
        <Menu.Item
-         name='appointments'
-         active={activeItem === 'appointments'}
-         onClick={this.handleItemClick}
+        as={NavLink}
+        exact to="/dashboard/calendar"
+        name='appointments'
+        active={activeItem === 'appointments'}
+        onClick={this.handleItemClick}
        />
-       </NavLink>
-       <NavLink exact to='/dashboard/notes'>
        <Menu.Item
-         name='notes'
-         active={activeItem === 'notes'}
-         onClick={this.handleItemClick}
+        as={NavLink}
+        exact to="/dashboard/notes"
+        name='notes'
+        active={activeItem === 'notes'}
+        onClick={this.handleItemClick}
        />
-       </NavLink>
      </Menu>
      </Segment>
     )

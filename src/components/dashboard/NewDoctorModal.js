@@ -30,7 +30,7 @@ class NewDoctorModal extends Component {
         onClose={this.handleClose}
         closeOnDimmerClick={false}
         closeOnEscape={false}
-        size='medium'
+        size='small'
       >
         <Header icon='user md' content='New Doctor' />
         <Modal.Content>

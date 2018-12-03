@@ -7,11 +7,19 @@ import dateFns from 'date-fns'
 
 class Dashboard extends Component {
 
+  renderCurrentDate = () => {
+    let today = new Date()
+    let date = `${today}`.split(" ").splice(0,4).join(" ")
+    // debugger
+    return (
+      <h2>{`Today is ${date}`}</h2>
+    )
+  }
 
   render() {
     const { value } = this.props
     const currentPain = this.props.pains.filter(painObj => painObj.user_id === this.props.currentUser.id)
-    debugger
+    // debugger
     return (
       <Grid columns={2}>
         <Grid.Column width={4}>
@@ -40,7 +48,7 @@ class Dashboard extends Component {
           </Segment>
           <h1>{"Welcome " + this.props.currentUser.name + "!"}</h1>
           <br/>
-          <h2>Today is Wednesday, November 28, 2018</h2>
+          {this.renderCurrentDate()}
 
           { currentPain.length > 0
             ?
