@@ -1,10 +1,30 @@
 import React, { Component } from "react";
 import dateFns from "date-fns";
+import NewAptModal from './NewAptModal'
 
 class Calendar extends Component {
   state = {
     currentMonth: new Date(),
-    selectedDate: new Date()
+    selectedDate: new Date(),
+    open: false
+  }
+
+  handleOpen = (event, date) => {
+    console.log(event.target)
+    this.setState({open: true}, () => {console.log(this.state.open)})
+    let newDate = dateFns.format(date,'YYYY-MM-DDTHH:mm:ss')
+    this.props.fillInNewAptModal(newDate)
+  }
+
+  handleClose = (event) => {
+    console.log(event.target)
+    this.setState({open: false})
+    this.props.newApt(event)
+  }
+
+  handleCancel = (event) => {
+    console.log(event.target)
+    this.setState({open: false})
   }
 
   renderHeader() {
@@ -45,6 +65,7 @@ class Calendar extends Component {
   }
 
   renderCells() {
+    // debugger
     const { currentMonth, selectedDate } = this.state
     const monthStart = dateFns.startOfMonth(currentMonth)
     const monthEnd = dateFns.endOfMonth(monthStart)
@@ -71,7 +92,7 @@ class Calendar extends Component {
             }`}
             key={day}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-            onDoubleClick={(event) => this.onDateDoubleClick(event)}
+            onDoubleClick={event => this.handleOpen(event, this.state.selectedDate)}
           >
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
@@ -91,9 +112,11 @@ class Calendar extends Component {
 
   onDateClick = (day) => {
     console.log(day)
+    const currentDay = dateFns.format(day, 'YYYY-MM-DD')
     this.setState({
       selectedDate: day
     })
+    this.props.renderApts(currentDay)
   }
 
   onDateDoubleClick = (event) => {
@@ -113,11 +136,23 @@ class Calendar extends Component {
   }
 
   render() {
+    // debugger
     return (
       <div className="calendar">
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}
+        <NewAptModal
+        newApt={this.props.newApt}
+        newAptName={this.props.newAptName}
+        newAptDetails={this.props.newAptDetails}
+        newAptScheduled={this.props.newAptScheduled}
+        handleChange={this.props.handleChange}
+        open={this.state.open}
+        handleClose={this.handleClose}
+        handleOpen={this.handleOpen}
+        handleCancel={this.handleCancel}
+        />
       </div>
     );
   }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Menu, Segment, Header } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const Logo = require('../../assets/temp_logo.png')
 
 const HeaderLogo = () => (
-  <Header as='h3' image={Logo} content='Chronic Companion' />
+  <Header as='h3' image={Logo} style={{paddingTop: '10px'}} content='Chronic Companion' inverted />
 )
 
 class SideBar extends Component {
@@ -13,45 +13,52 @@ class SideBar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  currentPath() {
+    const particalString = this.props.match.path.split("")
+    particalString.shift()
+    return particalString.join('')
+  }
+
   render() {
-    const { activeItem } = this.state
+    const currentPath = this.currentPath()
+    console.log("SideBar props are", currentPath)
     return (
-      <Segment color={'violet'} inverted >
-      <HeaderLogo />
-      <Menu fluid color={'violet'} inverted secondary vertical borderless>
+      <Segment style={{backgroundColor: 'rgb(44, 51, 109)', minHeight: '100vh'}} inverted >
+      <Menu fluid style={{backgroundColor: 'rgb(44, 51, 109)', minHeight: '100vh'}} inverted secondary vertical borderless>
+        <HeaderLogo />
        <Menu.Item
         as={NavLink}
         exact to="/dashboard"
         name='dashboard'
-        active={activeItem === 'dashboard'}
+        active={currentPath === 'dashboard'}
         onClick={this.handleItemClick}
        />
        <Menu.Item
         as={NavLink}
-        exact to="/dashboard/medications"
+        exact to="/medications"
         name='medications'
-        active={activeItem === 'medications'}
+        active={currentPath === 'medications'}
         onClick={this.handleItemClick}
        />
        <Menu.Item
         as={NavLink}
-        exact to="/dashboard/doctors"
+        exact to="/doctors"
         name='doctors'
-        active={activeItem === 'doctors'}
+        active={currentPath === 'doctors'}
         onClick={this.handleItemClick}
        />
        <Menu.Item
         as={NavLink}
-        exact to="/dashboard/calendar"
-        name='appointments'
-        active={activeItem === 'appointments'}
+        exact to="/calendar"
+        name='calendar'
+        active={currentPath === 'calendar'}
         onClick={this.handleItemClick}
        />
        <Menu.Item
         as={NavLink}
-        exact to="/dashboard/notes"
+        exact to="/notes"
         name='notes'
-        active={activeItem === 'notes'}
+        active={currentPath === 'notes'}
         onClick={this.handleItemClick}
        />
      </Menu>
@@ -60,4 +67,4 @@ class SideBar extends Component {
   }
 }
 
-export default SideBar
+export default withRouter(SideBar)

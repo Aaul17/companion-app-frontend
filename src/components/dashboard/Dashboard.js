@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar'
+import PainGraph from './PainGraph'
 import { Grid, Menu, Segment, Button, Form } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import dateFns from 'date-fns'
@@ -9,10 +10,44 @@ class Dashboard extends Component {
 
   renderCurrentDate = () => {
     let today = new Date()
-    let date = `${today}`.split(" ").splice(0,4).join(" ")
+    let date = dateFns.format(today, 'dddd, MMMM Do, YYYY')
     // debugger
     return (
-      <h2>{`Today is ${date}`}</h2>
+      <span className="current-day">{`today is ${date}`}</span>
+    )
+  }
+
+  renderCurrentApts = () => {
+    // debugger
+    let myApts = this.props.appointments.filter(aptObj => aptObj.user_id === this.props.currentUser.id)
+    let todayApts = myApts.filter(aptObj => dateFns.isToday(aptObj.scheduled))
+    return (
+      <div className="dashboard-feature">
+        <h2>Today's Appointments</h2>
+      {
+        todayApts.length > 0
+        ?
+        todayApts.map(aptObj => <p key={aptObj.id}> - {aptObj.name} - {dateFns.format(aptObj.scheduled, 'h:mm aa')}</p>)
+        :
+        <p>You have no appointments scheduled for today.</p>
+      }
+      </div>
+    )
+  }
+
+  renderCurrentMeds = () => {
+    let myMeds = this.props.medications.filter(medObj => medObj.user_id === this.props.currentUser.id)
+    return (
+      <div className="dashboard-feature">
+        <h2>Medications To Take </h2>
+        {
+          myMeds.length > 0
+          ?
+          myMeds.map(medObj => <p key={medObj.id}> - {medObj.name} - {medObj.dose} ({medObj.frequency})</p>)
+          :
+          <p>You have no medications to take for today.</p>
+        }
+      </div>
     )
   }
 
@@ -46,15 +81,14 @@ class Dashboard extends Component {
             </Menu.Menu>
           </Menu>
           </Segment>
-          <h1>{"Welcome " + this.props.currentUser.name + "!"}</h1>
+          <h1 className="welcome-user">Hi {this.props.currentUser.name}, {this.renderCurrentDate()}</h1>
           <br/>
-          {this.renderCurrentDate()}
 
           { currentPain.length > 0
             ?
             (dateFns.isToday(new Date(currentPain[currentPain.length-1].date.split("-").join(",")))
             ?
-            null
+            <p>You have checked in today.</p>
             :
             <>
             <p>You haven't checked in today! What is your pain level?</p>
@@ -71,7 +105,7 @@ class Dashboard extends Component {
             <Form.Radio label='8' value='8' checked={value === '8'} onChange={this.props.handleRadioChange}/>
             <Form.Radio label='9' value='9' checked={value === '9'} onChange={this.props.handleRadioChange}/>
             <Form.Radio label='10' value='10' checked={value === '10'} onChange={this.props.handleRadioChange}/>
-            <Form.Button>Submit</Form.Button>
+            <button>Submit</button>
             </Form.Group>
             </Form>
             </>
@@ -92,11 +126,27 @@ class Dashboard extends Component {
           <Form.Radio label='8' value='8' checked={value === '8'} onChange={this.props.handleRadioChange}/>
           <Form.Radio label='9' value='9' checked={value === '9'} onChange={this.props.handleRadioChange}/>
           <Form.Radio label='10' value='10' checked={value === '10'} onChange={this.props.handleRadioChange}/>
-          <Form.Button>Submit</Form.Button>
+          <button>Submit</button>
           </Form.Group>
           </Form>
           </>
         }
+        <br />
+        <br />
+        <Grid columns={2} relaxed>
+        <Grid.Row>
+          <Grid.Column width={5}>
+            {this.renderCurrentApts()}
+            <br />
+          </Grid.Column>
+          <Grid.Column width={5}>
+            {this.renderCurrentMeds()}
+            <br />
+          </Grid.Column>
+        </Grid.Row>
+        </Grid>
+        <br />
+        <PainGraph myPains={currentPain}/>
         </Grid.Column>
       </Grid>
     )

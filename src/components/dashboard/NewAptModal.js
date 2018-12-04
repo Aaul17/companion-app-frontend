@@ -17,33 +17,37 @@ const styles = (theme) => ({
 })
 
 class NewAptModal extends Component {
-  state = {
-    open: false
-  }
+  // constructor(props) {
+  //   // debugger
+  //   super(props)
+  //   this.state = {
+  //     open: props.open
+  //   }
+  // }
 
-  handleOpen = (event) => {
-    console.log(event.target)
-    this.setState({open: true})
-  }
-
-  handleClose = (event) => {
-    console.log(event.target)
-    this.setState({open: false})
-    this.props.newApt(event)
-  }
-
-  handleCancel = (event) => {
-    console.log(event.target)
-    this.setState({open: false})
-  }
+  // handleOpen = (event) => {
+  //   console.log(event.target)
+  //   this.setState({open: true})
+  // }
+  //
+  // handleClose = (event) => {
+  //   console.log(event.target)
+  //   this.setState({open: false})
+  //   this.props.newApt(event)
+  // }
+  //
+  // handleCancel = (event) => {
+  //   console.log(event.target)
+  //   this.setState({open: false})
+  // }
 
   render() {
     const { classes } = this.props
     return (
       <Modal
-        trigger={<Button onClick={event => this.handleOpen(event)}>Add Appointment</Button>}
-        open={this.state.open}
-        onClose={this.handleClose}
+        // onOpen={this.props.handleOpen}
+        open={this.props.open}
+        // onClose={this.props.handleClose}
         closeOnDimmerClick={false}
         closeOnEscape={false}
         size='small'
@@ -57,10 +61,10 @@ class NewAptModal extends Component {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={this.handleCancel} negative>
+          <Button onClick={this.props.handleCancel} negative>
               Cancel
             </Button>
-          <Button color='green' onClick={event => this.handleClose(event)}>
+          <Button color='green' onClick={event => this.props.handleClose(event)}>
             <Icon name='checkmark' /> Done
           </Button>
         </Modal.Actions>

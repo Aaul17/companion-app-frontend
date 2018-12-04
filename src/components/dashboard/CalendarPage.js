@@ -4,9 +4,30 @@ import { Grid, Menu, Segment, Button} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import Calendar from './Calendar'
 import Appointments from './Appointments'
-import NewAptModal from './NewAptModal'
+import dateFns from 'date-fns'
 
 class CalendarPage extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      dailyApts: []
+    }
+  }
+
+  renderApts = (day) => {
+    // debugger
+    // console.log(this.state, this.props)
+    let foundAppts = this.props.appointments.filter(aptObj => {
+      // debugger
+      return dateFns.format(aptObj.scheduled, 'YYYY-MM-DD') === day
+    })
+    console.log('found appts', foundAppts)
+    this.setState({
+      dailyApts: foundAppts
+    }, () => console.log('weve set the state', this.state))
+  }
+
   render(){
     return(
       <Grid columns={2}>
@@ -36,23 +57,22 @@ class CalendarPage extends Component {
           </Segment>
           <div className='calendar-page'>
             <main>
-              <Calendar />
+              <Calendar
+              fillInNewAptModal={this.props.fillInNewAptModal}
+              newApt={this.props.newApt}
+              newAptName={this.props.newAptName}
+              newAptDetails={this.props.newAptDetails}
+              newAptScheduled={this.props.newAptScheduled}
+              handleChange={this.props.handleChange}
+              renderApts={this.renderApts}
+              />
             </main>
           </div>
           <br />
-          <NewAptModal
-          newApt={this.props.newApt}
-          newAptName={this.props.newAptName}
-          newAptDetails={this.props.newAptDetails}
-          newAptScheduled={this.props.newAptScheduled}
-          handleChange={this.props.handleChange}
-          />
-          <br />
-          <br />
-          <Appointments
+          {<Appointments
           currentUser={this.props.currentUser}
           logoutCurrentUser={this.props.logoutCurrentUser}
-          appointments={this.props.appointments}
+          appointments={this.state.dailyApts}
           handleChange={this.props.handleChange}
           fillInAptModal={this.props.fillInAptModal}
           editApt={this.props.editApt}
@@ -60,7 +80,7 @@ class CalendarPage extends Component {
           aptDetails={this.props.aptDetails}
           aptScheduled={this.props.aptScheduled}
           deleteApt={this.props.deleteApt}
-          />
+          />}
         </Grid.Column>
       </Grid>
     )

@@ -477,6 +477,12 @@ class App extends Component {
     })
   }
 
+  fillInNewAptModal = (date) => {
+    this.setState({
+      newAptScheduled: date
+    })
+  }
+
   newApt = (event) => {
     event.preventDefault()
     fetch('http://localhost:3000/api/v1/appointments', {
@@ -537,6 +543,7 @@ class App extends Component {
     .then(json => {
       console.log(json)
       this.setState({
+        pains: [...this.state.pains, json],
         value: ""
       })
     })
@@ -562,6 +569,8 @@ class App extends Component {
                 handleRadioChange={this.handleRadioChange}
                 value={this.state.value}
                 setPainLevel={this.setPainLevel}
+                appointments={this.state.appointments}
+                medications={this.state.medications}
                 />)
               :
               (<Redirect to="/"/>)
@@ -604,7 +613,7 @@ class App extends Component {
                 newBirthday={this.state.newBirthday}
                 />)
             )}/>
-            <Route exact path="/dashboard/medications" render={(props) => (
+            <Route exact path="/medications" render={(props) => (
               this.state.currentUser ?
               (<MedicationsPage
               currentUser={this.state.currentUser}
@@ -626,7 +635,7 @@ class App extends Component {
               :
               (<Redirect to="/"/>)
             )}/>
-            <Route exact path="/dashboard/doctors" render={(props) => (
+            <Route exact path="/doctors" render={(props) => (
               this.state.currentUser ?
               (<DoctorsPage
               currentUser={this.state.currentUser}
@@ -651,7 +660,7 @@ class App extends Component {
               :
               (<Redirect to="/"/>)
             )}/>
-            <Route exact path="/dashboard/notes" render={(props) => (
+            <Route exact path="/notes" render={(props) => (
               this.state.currentUser ?
               (<NotesPage
               currentUser={this.state.currentUser}
@@ -670,7 +679,7 @@ class App extends Component {
               :
               (<Redirect to="/"/>)
             )}/>
-            <Route exact path="/dashboard/calendar" render={(props) => (
+            <Route exact path="/calendar" render={(props) => (
               this.state.currentUser ?
               (<CalendarPage
                 currentUser={this.state.currentUser}
@@ -682,6 +691,7 @@ class App extends Component {
                 aptName={this.state.aptName}
                 aptDetails={this.state.aptDetails}
                 aptScheduled={this.state.aptScheduled}
+                fillInNewAptModal={this.fillInNewAptModal}
                 newApt={this.newApt}
                 newAptName={this.state.newAptName}
                 newAptDetails={this.state.newAptDetails}

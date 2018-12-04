@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Segment, Header, Button } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const Logo = require('../assets/temp_logo.png')
 
@@ -11,26 +11,39 @@ const HeaderLogo = () => (
 class NavBar extends Component {
   state = { activeItem: "home"}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name }, () => console.log(this.state.activeItem))
+  handleItemClick = (e, {name}) => {
+    this.setState({ activeItem: name }, () => {
+      // debugger
+      console.log(this.state.activeItem)
+    })
+  }
+
+  currentPath() {
+    const particalString = this.props.match.path.split("")
+    particalString.shift()
+    return particalString.join('')
+  }
 
   render(){
-    const { activeItem } = this.state
+    // const { activeItem } = this.state
+    const currentPath = this.currentPath()
+    console.log("NavBar props are", currentPath)
     return (
       <Segment className="navbar">
         <HeaderLogo />
         <Menu secondary borderless size='huge'>
             <Menu.Item
             as={NavLink}
-            exact to="/"
+            exact to='/'
             name="home"
-            active={activeItem === 'home'}
+            active={currentPath === 'home'}
             onClick={this.handleItemClick}
             />
             <Menu.Item
             as={NavLink}
-            exact to="/about"
+            exact to='/about'
             name="about"
-            active={activeItem === 'about'}
+            active={currentPath === 'about'}
             onClick={this.handleItemClick}
             />
           {
@@ -38,16 +51,16 @@ class NavBar extends Component {
             <>
             <Menu.Item
             as={NavLink}
-            exact to="/dashboard"
+            exact to='/dashboard'
             name="dashboard"
-            active={activeItem === 'dashboard'}
+            active={currentPath === 'dashboard'}
             onClick={this.handleItemClick}
             />
             <Menu.Item
             as={NavLink}
-            exact to="/profile"
+            exact to='/profile'
             name="profile"
-            active={activeItem === 'profile'}
+            active={currentPath === 'profile'}
             onClick={this.handleItemClick}
             />
             </>
@@ -56,9 +69,9 @@ class NavBar extends Component {
           }
             <Menu.Item
             as={NavLink}
-            exact to="/help"
+            exact to='/help'
             name="help"
-            active={activeItem === 'help'}
+            active={currentPath === 'help'}
             onClick={this.handleItemClick}
             />
           {
@@ -72,16 +85,16 @@ class NavBar extends Component {
             <Menu.Menu position='right'>
               <Menu.Item
               as={NavLink}
-              exact to="/login"
-              name='log in'
-              active={activeItem === 'log in'}
+              exact to='/login'
+              name='login'
+              active={currentPath === 'login'}
               onClick={this.handleItemClick}
               />
               <Menu.Item
               as={NavLink}
-              exact to="/signup"
-              name='sign up'
-              active={activeItem === 'sign up'}
+              exact to='/signup'
+              name='signup'
+              active={currentPath === 'signup'}
               onClick={this.handleItemClick}
               />
             </Menu.Menu>
@@ -92,4 +105,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+export default withRouter(NavBar)
