@@ -25,7 +25,7 @@ class EditNoteModal extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button onClick={event => this.handleOpen(this.props.note)}>Edit</Button>}
+        trigger={<span className="note-button" onClick={event => this.handleOpen(this.props.note)}>Edit</span>}
         open={this.state.open}
         onClose={this.handleClose}
         closeOnDimmerClick={false}

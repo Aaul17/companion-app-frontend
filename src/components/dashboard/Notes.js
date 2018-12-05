@@ -4,6 +4,7 @@ import { Card } from 'semantic-ui-react'
 
 const Notes = ({currentUser, handleChange, notes, fillInNoteModal, editNote, noteTitle, noteBody, deleteNote}) => {
   const myNotes = notes.filter(noteObj => noteObj.user_id === currentUser.id)
+
   return (
     <Card.Group className="notes-div">
       {myNotes.map(noteObj =>

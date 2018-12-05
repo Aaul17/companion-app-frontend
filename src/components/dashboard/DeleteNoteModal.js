@@ -24,7 +24,7 @@ class DeleteNoteModal extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button negative onClick={event => this.handleOpen(event)}>Delete</Button>}
+        trigger={<span className="note-button" onClick={event => this.handleOpen(event)}>Delete</span>}
         open={this.state.open}
         onClose={this.handleClose}
         closeOnDimmerClick={false}
