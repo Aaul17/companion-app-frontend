@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
-import { Button } from 'semantic-ui-react'
+import { Button, Grid, Icon } from 'semantic-ui-react'
+
+const ProfileImg = require('../assets/profile_pic.jpg')
 
 class Profile extends Component {
   state = {
     profileImg: ""
   }
 
-  componentDidMount() {
-    fetch('https://dog.ceo/api/breeds/image/random')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      this.setState({
-        profileImg: json.message
-      })
-    })
-  }
-
   render() {
     return (
       <>
       <NavBar currentUser={this.props.currentUser} logoutCurrentUser={this.props.logoutCurrentUser}/>
-      <div>
-        <h1>Profile Page</h1>
-        <br/>
-        <p>{this.props.currentUser.name}</p>
-        <p>Date of Birth: {this.props.currentUser.date_of_birth}</p>
-        <p>Gender: {this.props.currentUser.gender}</p>
-        <p>Email: {this.props.currentUser.email}</p>
-        <p>Location: {this.props.currentUser.location}</p>
+      <div className="profile">
+      <h1 style={{paddingLeft: '20px'}}>My Profile</h1>
+      <Grid padded columns={3}>
+        <div className="profile-page">
+        <Grid.Column width={3} style={{paddingLeft: '10px'}}>
+          <img className="profile-pic" src={ProfileImg} alt="" />
+        </Grid.Column>
+        <Grid.Column width={5} style={{paddingLeft: '40px'}}>
+          <h3>{this.props.currentUser.name} <span className="user-location">{" "}<Icon size="small" name="map marker alternate"/>{`${this.props.currentUser.location}`}</span></h3>
+          <p>Date of Birth: {this.props.currentUser.date_of_birth}</p>
+          <p>Gender: {this.props.currentUser.gender}</p>
+          <p>Email: {this.props.currentUser.email}</p>
+        </Grid.Column>
+        </div>
+        <Grid.Column width={4}>
+        </Grid.Column>
+      </Grid>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Button style={{marginLeft: '20px'}}>Edit Profile</Button>
       </div>
-      <Button>Edit Profile</Button>
       </>
     )
   }

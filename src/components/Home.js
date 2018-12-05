@@ -13,9 +13,6 @@ class Home extends Component {
           <h1 className="tagline-firstline">Keep track of your chronic illness</h1>
           <h1 className="tagline-secondline">in one app</h1>
         </div>
-        <div className="footer">
-        Copyright © 2018 Alexandra Aulum-Pedersen. All rights reserved.
-        </div>
       </>
     )
   }

@@ -1,7 +1,7 @@
 .App {
   /* text-align: center; */
   margin-top: -20px;
-  height: 718px;
+  min-height: 85vh;
   background-repeat: no-repeat;
   background-size: cover;
 }

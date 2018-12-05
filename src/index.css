@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-.navbar {
-  /* padding-top: 30px; */
-}
-
 .tagline-firstline {
   font-size: 70px;
   color: #e6e6e6;
@@ -279,8 +275,54 @@ main {
   padding: 20px;
   width: 200px;
   height: 200px;
-  /* font-family: 'Caveat', cursive; */
 }
 .note-button:hover {
   color: #668cff;
+}
+
+.profile-page {
+  border: solid 0.1px lightgrey;
+  display: flex;
+  padding: 20px;
+  margin-left: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+}
+
+.profile-pic {
+  display: block;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 10%;
+  border: 10px solid lightgrey;
+}
+
+.user-location {
+  font-size: 15px;
+  color: grey;
+}
+
+.form-container {
+  background-size: cover;
+  min-height: 85vh;
+  margin-top: -15px;
+}
+
+#login-div {
+  padding-top: 100px;
+  padding-left: 70px;
+}
+
+#signup-div {
+  padding-top: 100px;
+  padding-left: 70px;
+}
+
+.button-div {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.help-page {
+  padding-left: 20px;
 }

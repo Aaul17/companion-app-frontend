@@ -128,6 +128,7 @@ class App extends Component {
   }
 
   newUser = (event) => {
+    debugger
     event.preventDefault()
     fetch('http://localhost:3000/api/v1/users',{
       'method': 'POST',
