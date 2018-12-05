@@ -37,7 +37,7 @@ class CalendarPage extends Component {
         <Grid.Column width={12}>
           <Segment className="dashboard-menu">
           <Menu secondary >
-            <Menu.Item name="Notes" />
+            <Menu.Item name="Calendar" />
             <Menu.Menu position='right'>
               <NavLink exact to="/profile">
                 <Menu.Item
