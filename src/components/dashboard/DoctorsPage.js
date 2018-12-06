@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import SideBar from './SideBar'
 import { Grid, Menu, Segment, Button, Table, Header} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
-import Doctors from './Doctors'
 import NewDoctorModal from './NewDoctorModal'
 import EditDoctorModal from './EditDoctorModal'
 import DeleteDoctorModal from './DeleteDoctorModal'
@@ -13,6 +12,10 @@ class DoctorsPage extends Component {
   selectDoc = (event, doctorObj) => {
     console.log(event.target)
     this.setState({selectedDoc: doctorObj})
+  }
+
+  clearDoc = () => {
+    this.setState({selectedDoc: null})
   }
 
   render() {
@@ -107,6 +110,7 @@ class DoctorsPage extends Component {
                 <DeleteDoctorModal
                 doctor={this.state.selectedDoc}
                 deleteDoctor={this.props.deleteDoctor}
+                clearDoc={this.clearDoc}
                 />
               </div>
               :

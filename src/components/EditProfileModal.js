@@ -25,7 +25,7 @@ class EditProfileModal extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button onClick={event => this.handleOpen(this.props.user)}>Edit Profile</Button>}
+        trigger={<Button style={{marginLeft: '20px'}} onClick={event => this.handleOpen(this.props.user)}>Edit Profile</Button>}
         open={this.state.open}
         onClose={this.handleClose}
         closeOnDimmerClick={false}

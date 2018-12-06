@@ -21,7 +21,7 @@ class CalendarPage extends Component {
     let foundAppts = this.props.appointments.filter(aptObj => {
       // debugger
       return dateFns.format(aptObj.scheduled, 'YYYY-MM-DD') === day
-    })
+    }).sort((a,b) => a.scheduled > b.scheduled ? 1 : (a.scheduled < b.scheduled ? -1 : 0))
     console.log('found appts', foundAppts)
     this.setState({
       dailyApts: foundAppts

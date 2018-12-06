@@ -14,6 +14,7 @@ class DeleteDoctorModal extends Component {
     console.log(event.target)
     this.setState({open: false})
     this.props.deleteDoctor(doctorObj)
+    this.props.clearDoc()
   }
 
   handleCancel = (event) => {

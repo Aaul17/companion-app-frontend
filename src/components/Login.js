@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form, Button } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import NavBar from './NavBar'
-import { NavLink } from 'react-router-dom';
 
 const LoginImg = require('../assets/log_in.jpg')
 
