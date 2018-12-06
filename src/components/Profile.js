@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
 import EditProfileModal from './EditProfileModal'
-import { Button, Grid, Icon } from 'semantic-ui-react'
+import { Grid, Icon } from 'semantic-ui-react'
 
 const ProfileImg = require('../assets/profile_pic.jpg')
 

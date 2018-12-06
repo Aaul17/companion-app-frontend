@@ -175,8 +175,9 @@ class App extends Component {
 
   editUser = (event, userObj) => {
     event.preventDefault()
+    debugger
     fetch(`http://localhost:3000/api/v1/users/${userObj.id}`, {
-      'method': 'POST',
+      'method': 'PATCH',
       'headers': {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
