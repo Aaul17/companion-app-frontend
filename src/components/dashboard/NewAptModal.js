@@ -17,37 +17,11 @@ const styles = (theme) => ({
 })
 
 class NewAptModal extends Component {
-  // constructor(props) {
-  //   // debugger
-  //   super(props)
-  //   this.state = {
-  //     open: props.open
-  //   }
-  // }
-
-  // handleOpen = (event) => {
-  //   console.log(event.target)
-  //   this.setState({open: true})
-  // }
-  //
-  // handleClose = (event) => {
-  //   console.log(event.target)
-  //   this.setState({open: false})
-  //   this.props.newApt(event)
-  // }
-  //
-  // handleCancel = (event) => {
-  //   console.log(event.target)
-  //   this.setState({open: false})
-  // }
-
   render() {
     const { classes } = this.props
     return (
       <Modal
-        // onOpen={this.props.handleOpen}
         open={this.props.open}
-        // onClose={this.props.handleClose}
         closeOnDimmerClick={false}
         closeOnEscape={false}
         size='small'

@@ -162,6 +162,59 @@ class App extends Component {
     })
   }
 
+  fillInProfileModal = (userObj) => {
+    this.setState({
+      newName: userObj.name,
+      newEmail: userObj.email,
+      newBirthday: userObj.date_of_birth,
+      newGender: userObj.gender,
+      newLocation: userObj.location,
+      newPassword: ""
+    })
+  }
+
+  editUser = (event, userObj) => {
+    event.preventDefault()
+    fetch(`http://localhost:3000/api/v1/users/${userObj.id}`, {
+      'method': 'POST',
+      'headers': {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      'body': JSON.stringify({
+        'name': this.state.newName,
+        'email': this.state.newEmail,
+        'date_of_birth': this.state.newBirthday,
+        'gender': this.state.newGender,
+        'location': this.state.newLocation,
+        'password_digest': this.state.newPassword
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        users: this.state.users.map(user => {
+          if (user.id === json.id) {
+            user.name = json.name
+            user.email = json.email
+            user.date_of_birth = json.date_of_birth
+            user.gender = json.gender
+            user.location = json.location
+            user.password_digest = json.password_digest
+          }
+          return user
+        }),
+        newName: "",
+        newEmail: "",
+        newGender: "",
+        newBirthday: "",
+        newLocation: "",
+        newPassword: ""
+      })
+    })
+  }
+
   setCurrentUser = (event) => {
     event.preventDefault()
     const user = this.state.users.find(userObj => userObj.email === this.state.setEmail && userObj.password_digest === this.state.setPassword)
@@ -581,6 +634,15 @@ class App extends Component {
               (<Profile
                 currentUser={this.state.currentUser}
                 logoutCurrentUser={this.logoutCurrentUser}
+                editUser={this.editUser}
+                fillInProfileModal={this.fillInProfileModal}
+                newName={this.state.newName}
+                newEmail={this.state.newEmail}
+                newLocation={this.state.newLocation}
+                newPassword={this.state.newPassword}
+                newGender={this.state.newGender}
+                newBirthday={this.state.newBirthday}
+                handleChange={this.handleChange}
                 />)
               :
               (<Redirect to="/"/>)

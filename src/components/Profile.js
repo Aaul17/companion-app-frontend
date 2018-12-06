@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
+import EditProfileModal from './EditProfileModal'
 import { Button, Grid, Icon } from 'semantic-ui-react'
 
 const ProfileImg = require('../assets/profile_pic.jpg')
@@ -34,7 +35,18 @@ class Profile extends Component {
       <br />
       <br />
       <br />
-      <Button style={{marginLeft: '20px'}}>Edit Profile</Button>
+      <EditProfileModal
+      user={this.props.currentUser}
+      editUser={this.props.editUser}
+      fillInProfileModal={this.props.fillInProfileModal}
+      newName={this.props.newName}
+      newEmail={this.props.newEmail}
+      newLocation={this.props.newLocation}
+      newPassword={this.props.newPassword}
+      newGender={this.props.newGender}
+      newBirthday={this.props.newBirthday}
+      handleChange={this.props.handleChange}
+      />
       </div>
       </>
     )
