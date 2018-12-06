@@ -25,7 +25,7 @@ class EditDoctorModal extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button onClick={event => this.handleOpen(this.props.doctor)}>Edit</Button>}
+        trigger={<Button compact onClick={event => this.handleOpen(this.props.doctor)}>Edit</Button>}
         open={this.state.open}
         onClose={this.handleClose}
         closeOnDimmerClick={false}

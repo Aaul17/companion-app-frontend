@@ -25,7 +25,7 @@ class NewDoctorModal extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button onClick={event => this.handleOpen(event)}>Add Doctor</Button>}
+        trigger={<Button compact onClick={event => this.handleOpen(event)}>Add Doctor</Button>}
         open={this.state.open}
         onClose={this.handleClose}
         closeOnDimmerClick={false}

@@ -24,7 +24,7 @@ class DeleteDoctorModal extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button negative onClick={event => this.handleOpen(event)}>Delete</Button>}
+        trigger={<Button compact negative onClick={event => this.handleOpen(event)}>Delete</Button>}
         open={this.state.open}
         onClose={this.handleClose}
         closeOnDimmerClick={false}
